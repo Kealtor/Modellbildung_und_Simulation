@@ -29,11 +29,11 @@ x_exakt = [(pi/12) * exp(sqrt(omega^2-g/l)*t) + (pi/12) * exp(-sqrt(omega^2-g/l)
 for n = 1:AnzahlSchritte
     
     %% Aufgabe 3: Euler explizit
-    x_Eu_expl(:,n+1) = (I + (h.*SystMatr))* x_Eu_expl(:,n) ; %x_Eu_expl(:,n)+ h.*(SystMatr*x_Eu_expl(:,n));
+    x_Eu_expl(:,n+1) = (I + (h.*SystMatr)) * x_Eu_expl(:,n) ; %x_Eu_expl(:,n)+ h.*(SystMatr*x_Eu_expl(:,n));
   
     
     %% Aufgabe 4: Euler implizit
-    x_Eu_impl(:,n+1) = inv(I-h*SystMatr)*x_Eu_impl(:,n);
+    x_Eu_impl(:,n+1) = inv(I-h*SystMatr) * x_Eu_impl(:,n);
     
     %% Aufgabe 5: Runge-Kutta-Verfahren
     k1(:,n) = h.*(SystMatr*x_RuKu(:,n));
