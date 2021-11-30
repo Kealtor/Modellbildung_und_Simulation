@@ -11,7 +11,6 @@ AnzahlSchritte = 10^4;                                             % Anzahl der 
 r = 2*pi-0;                                                        % Range von 0 - 2*pi
 h = r/AnzahlSchritte;                                              % Zeitschrittweite
 
-
 x_0 = [pi/6;0];                                                    % Anfangsbedingungen in Zustandsvektor
 t = 0:h:r;                                                         % Zeitvektor
 
@@ -29,11 +28,11 @@ alpha = 0.5*trace(SystMatr);
 lambda1 = sqrt(omega^2-(g/l)); 
 lambda2 = -sqrt(omega^2-(g/l));
 
-%disp(lambda1);
-%disp(lambda2);
+disp(lambda1);
+disp(lambda2);
 %disp(gamma);
 %disp(alpha);
-%disp(h*lambda1);
+disp(h*lambda1);
 
 %% Aufgabe 2: exakte Loesung
 x_exakt = [(pi/12) * (exp(sqrt(omega^2-g/l)*t) + exp(-sqrt(omega^2-g/l)*t)) ; 
@@ -67,34 +66,36 @@ for i=1:AnzahlSchritte
     e_Eu_expl(1,i) = max(abs(x_Eu_expl(1,1:i)-x_exakt(1,1:i)));
     e_Eu_expl(2,i) = max(abs(x_Eu_expl(2,1:i)-x_exakt(2,1:i)));
     
-    e_Eu_impl(1,i) = max(abs(x_Eu_expl(1,1:i)-x_exakt(1,1:i)));
-    e_Eu_impl(2,i) = max(abs(x_Eu_expl(2,1:i)-x_exakt(2,1:i)));
+    e_Eu_impl(1,i) = max(abs(x_Eu_impl(1,1:i)-x_exakt(1,1:i)));
+    e_Eu_impl(2,i) = max(abs(x_Eu_impl(2,1:i)-x_exakt(2,1:i)));
     
-    e_RuKu(1,i) = max(abs(x_Eu_expl(1,1:i)-x_exakt(1,1:i)));
-    e_RuKu(2,i) = max(abs(x_Eu_expl(2,1:i)-x_exakt(2,1:i)));
+    e_RuKu(1,i) = max(abs(x_RuKu(1,1:i)-x_exakt(1,1:i)));
+    e_RuKu(2,i) = max(abs(x_RuKu(2,1:i)-x_exakt(2,1:i)));
 
 end
 
 %% Aufgabe 7: Plots
 figure(1);  
 subplot(2,1,1);
-plot(t,x_exakt(1, :),'Color','g','LineWidth',3, 'LineStyle', '--');     
+plot(t,x_exakt(1, :),'Color','g','LineWidth',3, 'LineStyle', ':');     
 hold on;                         
 plot(t,x_Eu_expl(1,:),'Color','r','LineWidth',1);
 plot(t,x_Eu_impl(1,:),'Color','b','LineWidth',1); 
 plot(t,x_RuKu(1,:),'Color','k','LineWidth',1);     
 legend('exakt','Expl', 'Impl', 'RuKu');
 title('Exact phi and Simulation(Integration methods) Plot')
+xlabel('Zeit');
 hold off
 
 subplot(2,1,2); 
-plot(t,x_exakt(2, :),'Color','g','LineWidth',3, 'LineStyle', '--');     
+plot(t,x_exakt(2, :),'Color','g','LineWidth',3, 'LineStyle', ':');     
 hold on;                         
 plot(t,x_Eu_expl(2,:),'Color','r','LineWidth',1);
 plot(t,x_Eu_impl(2,:),'Color','b','LineWidth',1); 
 plot(t,x_RuKu(2,:),'Color','k','LineWidth',1);     
 legend('exakt','Expl', 'Impl', 'RuKu');
 title('Exact phi dot and Simulation(Integration methods) Plot');
+xlabel('Zeit');
 hold off
 %% Aufgabe 8: Plots
 figure(2); 
@@ -108,7 +109,7 @@ title('Local Error');
 hold off
 
 subplot(2,1,2);
-plot(t(1:end-1),e_Eu_expl(2,:),'b--','LineWidth',4);
+plot(t(1:end-1),e_Eu_expl(2,:),'b-','LineWidth',4);
 hold on
 plot(t(1:end-1),e_Eu_impl(2,:),'g-','LineWidth',2);
 plot(t(1:end-1),e_RuKu(2,:),'r-','LineWidth',1);
