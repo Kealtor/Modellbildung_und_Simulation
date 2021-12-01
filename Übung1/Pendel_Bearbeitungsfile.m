@@ -6,7 +6,7 @@ clc
 %% Parameter
 l = 0.2;                                                           % Laenge l
 g = 9.81;                                                          % Erdbeschleunigung
-omega = 0.5*sqrt(g/l);                                             % Rotationsgeschwindigkeit
+omega = 2*sqrt(g/l);                                             % Rotationsgeschwindigkeit
 AnzahlSchritte = 10^4;                                             % Anzahl der Zeitschritte
 r = 2*pi-0;                                                        % Range von 0 - 2*pi
 h = r/AnzahlSchritte;                                              % Zeitschrittweite
@@ -28,11 +28,14 @@ alpha = 0.5*trace(SystMatr);
 lambda1 = sqrt(omega^2-(g/l)); 
 lambda2 = -sqrt(omega^2-(g/l));
 
-disp(lambda1);
-disp(lambda2);
+disp(['Lambda1: ',num2str(lambda1)]);
+disp(['Lambda2: ',num2str(lambda2)]);
+
 %disp(gamma);
 %disp(alpha);
-disp(h*lambda1);
+disp(['h*Lambda1: ',num2str(h*lambda1)]);
+disp(['h*Lambda2: ',num2str(h*lambda2)]);
+
 
 %% Aufgabe 2: exakte Loesung
 x_exakt = [(pi/12) * (exp(sqrt(omega^2-g/l)*t) + exp(-sqrt(omega^2-g/l)*t)) ; 
