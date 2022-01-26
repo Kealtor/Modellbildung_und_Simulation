@@ -114,7 +114,7 @@ for nt=1:maxnt
         
         % Diffusive term with CDS
         diff_uds=gamma*(phi_uds(i+1)-2*phi_uds(i)+phi_uds(i-1))/dx^2 ; % >>> cds d2phi/dx2 comes here for phi_uds <<<;
-        diff_cds=gamma*(phi_cds(i+1)-2*phi_cds(i)+phi_cds(i-1))/dx^2 ; % >>> cds d2phi/dx2 comes here for phi_cds <<<;
+        diff_cds=gamma*(phi_uds(i+1)-2*phi_uds(i)+phi_uds(i-1))/dx^2 ; % >>> cds d2phi/dx2 comes here for phi_cds <<<;
 
         rhs_uds(i)=diff_uds-konv_uds;
         rhs_cds(i)=diff_cds-konv_cds;
